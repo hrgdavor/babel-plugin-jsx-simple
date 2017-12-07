@@ -1,4 +1,4 @@
-# babel-plugin-jsx-simple [![CircleCI](https://img.shields.io/circleci/project/hrgdavor/babel-plugin-jsx-simple.svg?maxAge=2592001)](https://circleci.com/gh/hrgdavor/babel-plugin-jsx-simple)
+# babel-plugin-jsx-simple [![CircleCI](https://img.shields.io/circleci/project/hrgdavor/babel-plugin-jsx-simple.svg?maxAge=2592000)](https://circleci.com/gh/hrgdavor/babel-plugin-jsx-simple)
 
 > Babel plugin for simple JSX to JS transformation.
 
