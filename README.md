@@ -7,6 +7,9 @@ Meant as basis for anyone looking to:
  - use JSX in own code with zero deps (needing this plugin in translipation step of course).
  - create own library that uses JSX addin own specific rules and extra transformations
 
+Based on [babel-plugin-transform-vue-jsx](https://github.com/vuejs/babel-plugin-transform-vue-jsx) by 
+simplifying it and removing all but basic JSX transformation.
+
 ### Requirements
 
 - This is mutually exclusive with `babel-plugin-transform-react-jsx` and `babel-plugin-transform-vue-jsx`.
