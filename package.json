@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-jsx-simple",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Babel plugin for simple JSX to JS transformation",
   "main": "index.js",
   "unpkg": "dist/babel-plugin-jsx-simple.min.js",
