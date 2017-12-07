@@ -38,12 +38,9 @@ In your `.babelrc`:
 }
 ```
 
-Make a file `test.js` and some of example code from below in it and run
-
-```
-babel test.js
-```
-
+ - Make a file `test.js`
+ - put some of example code from below in it 
+ - run `babel test.js`
 
 The plugin transpiles the following JSX:
 
