@@ -10,7 +10,7 @@ Meant as basis for anyone looking to:
 Based on [babel-plugin-transform-vue-jsx](https://github.com/vuejs/babel-plugin-transform-vue-jsx) by 
 simplifying it and removing all but basic JSX transformation.
 
-ES6 syntax is used intentionally as, at the time of creation of this plugin
+ES6 syntax is used intentionally because at the time of creation of this plugin
 browser versions are already ok with ES6 code. And tools like babel enable simple
 bridge for all cases where olsder ES is needed. Babel will transpile the code for older browsers if you use preset `es2015`.
 
