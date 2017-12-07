@@ -60,7 +60,7 @@ Note the `h` function, which is something that you need to provide in the scope.
 for many use cases:
 
 ```js
-  function createElement(tag,attr){
+  function h(tag,attr){
     return {tag, attr, children: Array.prototype.slice.call(arguments,2) };
   }
 ```
