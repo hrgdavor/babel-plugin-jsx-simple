@@ -10,6 +10,10 @@ Meant as basis for anyone looking to:
 Based on [babel-plugin-transform-vue-jsx](https://github.com/vuejs/babel-plugin-transform-vue-jsx) by 
 simplifying it and removing all but basic JSX transformation.
 
+ES6 syntax is used intentionally as, at the time of creation of this plugin
+browser versions are already ok with ES6 code. And tools like babel enable simple
+bridge for all cases where olsder ES is needed. Babel will transpile the code for older browsers if you use preset `es2015`.
+
 ### Requirements
 
 - This is mutually exclusive with `babel-plugin-transform-react-jsx` and `babel-plugin-transform-vue-jsx`.
@@ -113,9 +117,7 @@ export default {
 
 ### JSX Spread
 
-JSX spread is simply translated to javascript spread. At the time of creation of this plugin,
-new browser versions are already adopting ES6, so no effort is made here to transpile spread.
-You can use let babel to transpile the code for older browsers by using preset `es2015`.
+JSX spread is simply translated to javascript spread.
 
 ``` js
 const data = {
