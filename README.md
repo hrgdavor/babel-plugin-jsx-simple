@@ -26,11 +26,7 @@ You will also see from there how a plugin can transform AST to give such nice fe
 ### Usage
 
 ``` bash
-npm install\
-  babel-plugin-syntax-jsx\
-  babel-plugin-jsx-simple\
-  babel-preset-env\
-  --save-dev
+npm install babel-plugin-syntax-jsx babel-plugin-jsx-simple babel-preset-env --save-dev
 ```
 
 In your `.babelrc`:
@@ -42,10 +38,17 @@ In your `.babelrc`:
 }
 ```
 
+Make a file `test.js` and some of example code from below in it and run
+
+```
+babel test.js
+```
+
+
 The plugin transpiles the following JSX:
 
 ``` js
-<div id="foo">{this.text}</div>
+<div id="foo">{text}</div>
 ```
 
 To the following JavaScript:
@@ -53,17 +56,31 @@ To the following JavaScript:
 ``` js
 h('div', {
   id: 'foo'
-}, this.text)
+}, text)
 ```
 
-Note the `h` function, which is something that you need to provide in the scope
+Note the `h` function, which is something that you need to provide in the scope. A simple functio like this can be sufficient 
+for many use cases:
+
+```js
+  function createElement(tag,attr){
+    return {tag, attr, children: Array.prototype.slice.call(arguments,2) };
+  }
+```
 
 ### Difference from React and Vue JSX
 
-This plugin only transforms tag names that start with uppercase from string literal to identifier, and does no other transformation.
-Child nodes are sent as extra parameters calling function `h(tagName, attr, child1, child2, ...)`.
+React and Vue add extra transformations that allows usefull shortcuts for their own use-cases.
 
-### Custom Tag Tip
+This plugin takes a basic principle of converting tags to function calls that can be easily converted
+to html nodes later. Child nodes are sent as extra parameters to he called function.
+
+the function that will be called is `h` and it your responsibility to have it visible in the scope where JSX is used.
+
+There is one simple extra transform that is done in this plugin:
+ - tag names that start with uppercase are passed as identifier instead as string literal.
+
+### Tag Name Tip
 
 If a tag name starts with lowercase, it will be treated as a string . 
 If it starts with uppercase, it will be treated as an identifier, which allows you to do:
