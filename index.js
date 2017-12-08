@@ -16,9 +16,9 @@ module.exports = function (babel) {
           // turn tag into createElement call
           var callExpr = buildElementCall(path.get('openingElement'), file)
           if (path.node.children.length) {
-            // add children array as 3rd+ arg
+            // add children as 3rd+ arg
             path.node.children.forEach(c=>callExpr.arguments.push(c));
-            // if you want to create an array instead, do it here            
+            // if you want to create an array instead, do it here
           }
           path.replaceWith(t.inherits(callExpr, path.node))
         }
@@ -37,7 +37,7 @@ module.exports = function (babel) {
       tagName = tagExpr.value
     }
 
-    if (t.react.isCompatTag(tagName)) {
+    if (t.react.isCompatTag(tagName)) { // starts with uppercase
       args.push(t.stringLiteral(tagName))
     } else {
       args.push(tagExpr)
