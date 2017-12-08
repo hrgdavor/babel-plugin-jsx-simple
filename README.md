@@ -5,10 +5,10 @@
 Meant as basis for anyone looking to:
  - understand and see what JSX is all about in it's most basic form
  - use JSX in own code with zero deps (needing this plugin in translipation step of course).
- - create own library that uses JSX addin own specific rules and extra transformations
+ - create new library that uses JSX (adding your own specific rules and extra transformations)
 
 Based on [babel-plugin-transform-vue-jsx](https://github.com/vuejs/babel-plugin-transform-vue-jsx) by 
-simplifying it and removing all but basic JSX transformation.
+simplifying it, and removing all but basic JSX transformation.
 
 ES6 syntax is used intentionally because at the time of creation of this plugin
 browser versions are already ok with ES6 code. And tools like babel enable simple
