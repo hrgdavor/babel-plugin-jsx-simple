@@ -108,7 +108,7 @@ Create an empty folder with empty `package.json`
 npm install babel-plugin-syntax-jsx babel-plugin-jsx-simple babel-preset-env --save-dev
 ```
 
-In your `.babelrc`:
+create `.babelrc`:
 
 ``` json
 {
