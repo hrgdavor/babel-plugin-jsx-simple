@@ -34,7 +34,7 @@ The JSX is tranformed to function calls and code looks like something tihs
 ``` js
 var person = {name:'Somebody', city: 'Mordor'}
 
-var def = h('div',null
+var def = h('div', null,
   h('div', {'class':'name'}, h('b', null, 'Name: '), person.name),
   h('div', {'class':'city'}, h('b', null, 'City: '), person.city),
 )
