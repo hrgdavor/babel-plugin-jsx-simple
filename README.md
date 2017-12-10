@@ -135,8 +135,8 @@ h('div', {
 }, text)
 ```
 
-Note the `h` function, which is something that you need to provide in the scope. A simple functio like this can be sufficient 
-for many use cases:
+Note the `h` function, which is something that you need to provide in the scope. A simple function 
+like this can be sufficient for many use cases:
 
 ```js
   function h(tag,attr){
