@@ -3,7 +3,8 @@
 > Babel plugin for simple JSX to JS transformation.
 
 Meant as basis for anyone looking to:
- - understand and see what JSX is all about in it's most basic form
+ - understand or demistify JSX
+ - see what JSX is all about in it's most basic form
  - use JSX in own code with zero deps (needing this plugin in translipation step of course).
  - create new library that uses JSX (adding your own specific rules and extra transformations)
 
