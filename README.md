@@ -14,6 +14,9 @@ ES6 syntax is used intentionally because at the time of creation of this plugin
 browser versions are already ok with ES6 code. And tools like babel enable simple
 bridge for all cases where olsder ES is needed. Babel will transpile the code for older browsers if you use preset `es2015`.
 
+
+
+
 ### Requirements
 
 - This is mutually exclusive with `babel-plugin-transform-react-jsx` and `babel-plugin-transform-vue-jsx`.
@@ -135,4 +138,68 @@ const data = {
   id: 'id1'
 }
 const vnode = h('div', {class: 'a', ...data })
+```
+
+### How it works (the basic idea)
+
+You want to write code that combines HTML and data
+
+``` js
+var person = {name:'Somebody', city: 'Mordor'}
+
+var def = <div>
+  <div class="name"><b>Name: </b>{person.name}</div>
+  <div class="city"><b>City: </b>{person.city}</div>
+</div>
+
+applyHtml(document.getElementById('person-data'), def);
+```
+
+The JSX is tranformed to function calls and code looks like something tihs
+
+``` js
+var person = {name:'Somebody', city: 'Mordor'}
+
+var def = h('div',null
+  h('div', {'class':'name'}, h('b', null, 'Name: '), person.name),
+  h('div', {'class':'city'}, h('b', null, 'City: '), person.city),
+)
+
+applyHtml(document.getElementById('person-data'), def);
+```
+
+the function `h` is implemented in such way that these function calls result in def being: 
+
+```js
+{
+  "tag": "div",
+  "attr": null,
+  "children": [
+    {
+      "tag": "div",
+      "attr": { "class": "name" },
+      "children": [
+        { "tag": "b", "attr": null,  "children": [ "Name: " ] },
+        "Somebody"
+      ]
+    },
+    {
+      "tag": "div",
+      "attr": { "class": "city" },
+      "children": [
+        { "tag": "b", "attr": null,  "children": [ "City: " ] },
+        "Mordor"
+      ]
+    }
+  ]
+}
+```
+
+and `applyHtml` is implemented to generate HTML based on the data
+
+```html
+<div>
+  <div class="name"><b>Name: </b>Somebody</div>
+  <div class="city"><b>City: </b>Mordor</div>
+</div>
 ```
