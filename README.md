@@ -99,6 +99,11 @@ You will also see from there how a plugin can transform AST to give such nice fe
 
 ### Usage
 
+Create an empty folder with empty `package.json` 
+```
+{}
+```
+
 ``` bash
 npm install babel-plugin-syntax-jsx babel-plugin-jsx-simple babel-preset-env --save-dev
 ```
