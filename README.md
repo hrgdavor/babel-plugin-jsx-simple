@@ -144,7 +144,7 @@ like this can be sufficient for many use cases:
   }
 ```
 
-### Difference from React and Vue JSX
+### Difference from JSX in React and Vuejs
 
 React and Vue add extra transformations that allows usefull shortcuts for their own use-cases.
 
