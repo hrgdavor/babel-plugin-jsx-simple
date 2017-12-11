@@ -12,12 +12,17 @@ module.exports = function (babel) {
         )
       },
       JSXElement: {
-        exit (path, file) {
+        exit (path, state) {
           // turn tag into createElement call
-          var callExpr = buildElementCall(path.get('openingElement'), file)
+          var callExpr = buildElementCall(path.get('openingElement'), state)
           if (path.node.children.length) {
             // add children as 3rd+ arg
-            path.node.children.forEach(c=>callExpr.arguments.push(c));
+            path.node.children.forEach(c=>{
+              // extra option to add arrow around every js expression that is a child
+              if(state.opts.addArrow && t.isExpression(c)) c = t.arrowFunctionExpression([],c)
+              
+              callExpr.arguments.push(c)
+            });
             // if you want to create an array instead, do it here
           }
           path.replaceWith(t.inherits(callExpr, path.node))
@@ -26,7 +31,7 @@ module.exports = function (babel) {
     }
   }
 
-  function buildElementCall (path, file) {
+  function buildElementCall (path, state) {
     path.parent.children = t.react.buildChildren(path.parent)
     var tagExpr = convertJSXIdentifier(path.node.name, path.node)
     var args = []
@@ -45,7 +50,7 @@ module.exports = function (babel) {
 
     var attribs = path.node.attributes
     if (attribs.length) {
-      attribs = buildOpeningElementAttributes(attribs, file)
+      attribs = buildOpeningElementAttributes(attribs, state)
     } else {
       attribs = t.nullLiteral()
     }
@@ -57,14 +62,14 @@ module.exports = function (babel) {
   function convertJSXIdentifier (node, parent) {
     if (t.isJSXIdentifier(node)) {
       if (node.name === 'this' && t.isReferenced(node, parent)) {
-        return t.thisExpression()
+        node = t.thisExpression()
       } else{
         // Vue uses esutils here to confirm valid Identifier name
         // we do no such thing for our simple JSX transform
         node.type = 'Identifier'
       }
     } else if (t.isJSXMemberExpression(node)) {
-      return t.memberExpression(
+      node = t.memberExpression(
         convertJSXIdentifier(node.object, node),
         convertJSXIdentifier(node.property, node)
       )
@@ -77,7 +82,7 @@ module.exports = function (babel) {
    * props and spreads as they are found.
    */
 
-  function buildOpeningElementAttributes (attribs) {
+  function buildOpeningElementAttributes (attribs, state ) {
     var _props = []
 
     while (attribs.length) {
@@ -86,7 +91,7 @@ module.exports = function (babel) {
         prop.argument._isSpread = true
         _props.push(t.spreadProperty(prop.argument))
       } else {
-        _props.push(convertAttribute(prop))
+        _props.push(convertAttribute(prop, state.opts.addArrow))
       }
     }
 
@@ -95,7 +100,7 @@ module.exports = function (babel) {
     return attribs
   }
 
-  function convertAttribute (node) {
+  function convertAttribute (node, addArrow) {
     var value = convertAttributeValue(node.value || t.booleanLiteral(true))
     if (t.isStringLiteral(value) && !t.isJSXExpressionContainer(node.value)) {
       value.value = value.value.replace(/\n\s+/g, ' ')
@@ -104,6 +109,11 @@ module.exports = function (babel) {
       node.name.type = 'Identifier'
     } else {
       node.name = t.stringLiteral(node.name.name)
+    }
+
+    // extra option to add arrow around every attribute value that is js expression
+    if(addArrow && t.isJSXExpressionContainer(node.value)){
+      value = t.arrowFunctionExpression([],value)
     }
     return t.inherits(t.objectProperty(node.name, value), node)
   }
