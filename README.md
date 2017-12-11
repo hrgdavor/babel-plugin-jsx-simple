@@ -140,8 +140,8 @@ Note the `h` function, which is something that you need to provide in the scope.
 like this can be sufficient for many use cases:
 
 ```js
-  function h(tag,attr){
-    return {tag, attr, children: Array.prototype.slice.call(arguments,2) };
+  function h(tag, attr, ...children){
+    return {tag, attr, children };
   }
 ```
 

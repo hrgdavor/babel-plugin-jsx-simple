@@ -16,8 +16,8 @@ Simply creates the object that describes the the html element
 that will later be created from it. This is also place where you can add your own customizations
 by making conventions for usage interpreting them them here.
 */
-function h(tag,attr){
-  return {tag, attr, children: Array.prototype.slice.call(arguments,2) };
+function h(tag,attr, ...children){
+  return {tag, attr, children};
 }
 
 /** insert HMTL based on tag description */

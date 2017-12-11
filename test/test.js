@@ -33,8 +33,8 @@ describe('babel-plugin-jsx-simple', () => {
     return callback(createElement);
   }
 
-  function createElement(tag,attr){
-    return {tag, attr, children: Array.prototype.slice.call(arguments,2) };
+  function createElement(tag, attr, ...children){
+    return {tag, attr, children};
   }
 
 })
