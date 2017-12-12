@@ -79,8 +79,12 @@ and `applyHtml` is implemented to generate HTML based on the data
 </div>
 ```
 
-You can look at another exmaple in [example.js](example/example.js) where you will also find
+You can look at another exmaple in [example/example.js](example/example.js) where you will also find
 sample implementation of `applyHtml` and `h`.
+
+Second exmaple in [example-arrow/example.js](example-arrow/example.js) showcases how wrapping dynamic parts
+into arrow functions can enable dynamic changes (but with static structure).
+
 
 ### Requirements
 
