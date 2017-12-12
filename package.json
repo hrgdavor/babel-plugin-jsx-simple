@@ -11,7 +11,8 @@
   "scripts": {
     "lint": "eslint index.js",
     "test": "npm run lint && mocha --compilers js:babel-register",
-    "dev": "cd example && babel example.js -o example.build.js --watch",
+    "exmaple": "cd example && babel example.js -o example.build.js --watch",
+    "exmaple-arrow": "cd exmaple-arrow && babel example.js -o example.build.js --watch",
     "build": "babel index.js  -o dist/babel-plugin-jsx-simple.min.js",
     "prepublish": "npm run build"
   },
