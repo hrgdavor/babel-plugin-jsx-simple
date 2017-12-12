@@ -17,7 +17,7 @@ bridge for all cases where older ES is needed. Babel easily will transpile the c
 
 ### How it works (the basic idea)
 
-You want to write code that combines HTML and data
+You want to write code that combines HTML and JS
 
 ``` js
 var person = {name:'Somebody', city: 'Mordor'}
@@ -30,7 +30,7 @@ var def = <div>
 applyHtml(document.getElementById('person-data'), def);
 ```
 
-The JSX is tranformed to function calls and code looks like something tihs
+The JSX is tranformed to function calls and then the code looks like this
 
 ``` js
 var person = {name:'Somebody', city: 'Mordor'}
@@ -43,7 +43,7 @@ var def = h('div', null,
 applyHtml(document.getElementById('person-data'), def);
 ```
 
-the function `h` is implemented in such way that these function calls result in def being: 
+the function `h` is implemented in such way that these calls to `h` result in `def` being: 
 
 ```js
 {
@@ -70,7 +70,8 @@ the function `h` is implemented in such way that these function calls result in 
 }
 ```
 
-and `applyHtml` is implemented to generate HTML based on the data
+the `applyHtml` function is implemented to generate HTML based on data structured like that
+so the final result in HTML is:
 
 ```html
 <div>
@@ -79,11 +80,13 @@ and `applyHtml` is implemented to generate HTML based on the data
 </div>
 ```
 
-You can look at another exmaple in [example/example.js](example/example.js) where you will also find
-sample implementation of `applyHtml` and `h`.
+First exmaple in [example/example.js](example/example.js) is written on this principle that is very similar
+to rendering in Vue and React (simple replace wthout vdiff). There you can find sample implementation of `applyHtml` and `h`.
 
 Second exmaple in [example-arrow/example.js](example-arrow/example.js) showcases how wrapping dynamic parts
-into arrow functions can enable dynamic changes (but with static structure).
+into arrow functions can enable dynamic changes (but with static structure) that uses JSX but with principles
+closer to templating approach (You create mostly static structure, where dynamic parts have special handling
+so they can be updated when needed).
 
 
 ### Requirements
