@@ -1,0 +1,5 @@
+{
+  "retainLines": true,
+  "plugins": [["../index", {addArrow: true}]],
+  "ignore": ["node_modules"]
+}

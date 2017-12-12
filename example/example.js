@@ -9,6 +9,44 @@ To test the code in older browser change .babelrc and add '"presets": ["es2015"]
 */
 
 
+/* ********************************* CODE USING UTILITY AND JSX  ***************************** */
+
+
+/** our example function that renders based on data (like state in Vue). */
+function renderList({data, numbered, color= 'red'}){
+    // Uppercase variable name is needed so it is recognized in jsx transformation
+    // instead of sending tag name: 'ListType' to the `h` function, the ListType identifier will be sent
+    // look at generated code after babel transforms JSX
+    var ListType = numbered ? 'ol':'ul';
+
+    var style = 'color:'+color;
+
+    // Array.prototype.map is used because, this way, there is no need to 
+    // prepare a variable with array before this JSX fragment.
+    return <ListType style={style}>
+        { data.map( (item, i)=> <li key={i}>{item}</li> ) }
+    </ListType>
+}
+
+// initial list
+var data = ['first', 'second', 'third'];
+
+// call our renderList function and use applyHtml to display result with different state
+applyHtml('app1', renderList({data, numbered:true } ));
+applyHtml('app2', renderList({data, numbered:false} ));
+
+
+applyHtml('app3', renderList({
+    data:data.concat(['fourth', 'fifth']), // add few more elements
+    numbered:true, 
+    color:'blue'} // change color
+));
+
+
+
+
+
+
 /* ************************ UTILITY ******************************* */
 
 /** 
@@ -46,38 +84,3 @@ function applyHtml(parent, def){
     parent.innerHTML = ''; // reset
     insertHtml(parent, null, def);
 }
-
-
-
-/* ********************************* CODE USING UTILITY AND JSX  ***************************** */
-
-
-/** our example function that renders based on data (like state in Vue). */
-function renderList({data, numbered, color= 'red'}){
-    // Uppercase variable name is needed so it is recognized in jsx transformation
-    // instead of sending tag name: 'ListType' to the `h` function, the ListType identifier will be sent
-    // look at generated code after babel transforms JSX
-    var ListType = numbered ? 'ol':'ul';
-
-    var style = 'color:'+color;
-
-    // Array.prototype.map is used because, this way, there is no need to 
-    // prepare a variable with array before this JSX fragment.
-    return <ListType style={style}>
-        { data.map( (item, i)=> <li key={i}>{item}</li> ) }
-    </ListType>
-}
-
-// initial list
-var data = ['first', 'second', 'third'];
-
-// call our renderList function and use applyHtml to display result with different state
-applyHtml('app1', renderList({data, numbered:true } ));
-applyHtml('app2', renderList({data, numbered:false} ));
-
-applyHtml('app3', renderList({
-    data:data.concat(['fourth', 'fifth']), 
-    numbered:true, 
-    color:'blue'} 
-));
-

@@ -17,12 +17,7 @@ module.exports = function (babel) {
           var callExpr = buildElementCall(path.get('openingElement'), state)
           if (path.node.children.length) {
             // add children as 3rd+ arg
-            path.node.children.forEach(c=>{
-              // extra option to add arrow around every js expression that is a child
-              if(state.opts.addArrow && t.isExpression(c)) c = t.arrowFunctionExpression([],c)
-              
-              callExpr.arguments.push(c)
-            });
+            path.node.children.forEach(c=>callExpr.arguments.push(c));
             // if you want to create an array instead, do it here
           }
           path.replaceWith(t.inherits(callExpr, path.node))
@@ -32,7 +27,13 @@ module.exports = function (babel) {
   }
 
   function buildElementCall (path, state) {
+    if(state.opts.addArrow){
+      // extra option to add arrow around every child that is js expression 
+      replaceWithArrow(path.parent.children);
+    }
+
     path.parent.children = t.react.buildChildren(path.parent)
+
     var tagExpr = convertJSXIdentifier(path.node.name, path.node)
     var args = []
     var tagName
@@ -123,6 +124,14 @@ module.exports = function (babel) {
       return node.expression
     } else {
       return node
+    }
+  }
+
+  function replaceWithArrow (ch) {
+    for(var i=0; i<ch.length; i++){
+      if(t.isJSXExpressionContainer(ch[i])){
+        ch[i].expression = t.arrowFunctionExpression([],ch[i].expression)
+      }
     }
   }
 }
