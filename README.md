@@ -90,6 +90,7 @@ into arrow functions can enable dynamic changes (but with static structure) that
 closer to templating approach (You create mostly static structure, where dynamic parts have special handling
 so they can be updated when needed).
 
+These two approaches can be combined in more fine grained manner than just global flag to achieve interesting things.
 
 ### Requirements
 
