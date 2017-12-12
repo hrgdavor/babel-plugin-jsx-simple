@@ -12,7 +12,7 @@ Based on [babel-plugin-transform-vue-jsx](https://github.com/vuejs/babel-plugin-
 simplifying it, and removing all but basic JSX transformation.
 
 ES6 syntax is used intentionally because browser are already ok with ES6 code 
-(at the time of creation of this plugin Edge, Chrome, FF). Additionally, tools like `babel` enable a simple
+(at the time of creation of this plugin: Edge, Chrome, FF). Additionally, tools like `babel` enable a simple
 bridge for all cases where older ES is needed. Babel easily will transpile the code for older browsers if you use preset `es2015`.
 
 ### How it works (the basic idea)
