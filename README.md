@@ -15,9 +15,9 @@ ES6 syntax is used intentionally because browser are already ok with ES6 code
 (at the time of creation of this plugin: Edge, Chrome, FF). Additionally, tools like `babel` enable a simple
 bridge for all cases where older ES is needed. Babel easily will transpile the code for older browsers if you use preset `es2015`.
 
-### How it works (the basic idea)
+### What is JSX all about(the basic idea)
 
-You want to write code that combines HTML and JS
+You want to write code that combines HTML and JS and do it sometimes inside a JS file too.
 
 ``` js
 var person = {name:'Somebody', city: 'Mordor'}
