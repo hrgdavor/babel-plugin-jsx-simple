@@ -80,6 +80,8 @@ so the final result in HTML is:
 </div>
 ```
 
+### Example code
+
 First exmaple in [example/example.js](example/example.js) is written on this principle that is very similar
 to rendering in Vue and React (simple replace wthout vdiff). There you can find sample implementation of `applyHtml` and `h`.
 
