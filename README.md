@@ -82,8 +82,8 @@ so the final result in HTML is:
 
 ### Example code
 
-First exmaple in [example/example.js](example/example.js) is written on this principle that is very similar
-to rendering in Vue and React (simple replace wthout vdiff). There you can find sample implementation of `applyHtml` and `h`.
+First exmaple in [example/example.js](example/example.js) is written on this principle, and is principally very similar
+to rendering in Vue and React (to simplify the code no diff is done, instead simple clear + add is used). You can find sample implementation of `applyHtml` and `h` there.
 
 Second exmaple in [example-arrow/example.js](example-arrow/example.js) showcases how wrapping dynamic parts
 into arrow functions can enable dynamic changes (but with static structure) that uses JSX but with principles
