@@ -16,13 +16,15 @@ var state = { time : new Date() };
 
 function calcStyle(){
     var colors = ['green','orange','red', 'purple', 'blue']
-    return 'transition: all 0.3s;color:'+colors[state.time.getSeconds() % colors.length]
+    return 'color:'+colors[state.time.getSeconds() % colors.length]
 }
+
+function num2(n){ return n>9 ? n: '0'+n;}
 
 var def = <div>
     Time: 
     <b style={calcStyle()}>
-    {state.time.getHours()}:{state.time.getMinutes()}:{state.time.getSeconds()}
+    {num2(state.time.getHours())}:{num2(state.time.getMinutes())}:{num2(state.time.getSeconds())}
     </b>
 </div>
 

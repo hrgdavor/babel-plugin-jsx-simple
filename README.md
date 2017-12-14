@@ -91,6 +91,9 @@ into arrow functions can enable dynamic changes (but with static structure) that
 closer to templating approach (You create mostly static structure, where dynamic parts have special handling
 so they can be updated when needed).
 
+If you run and inspect second example you will see specific parts changing
+![inspect](example-arrow/inspect.gif)
+
 These two approaches can be combined in more fine grained manner than just global flag to achieve interesting things.
 
 ### Requirements
