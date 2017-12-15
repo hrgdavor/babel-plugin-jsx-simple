@@ -55,7 +55,7 @@ function h(tag,attr, ...children){
 
 
 /** insert HMTL based on tag description and return lsit of callbacks that will refresh each dynamic part */
-function insertHtml(parent, before, def, updaters){
+function insertHtml(parent, def, before, updaters){
     function updateAttr(node, attr, func){
         return function(){
             var newValue = func();
@@ -72,16 +72,16 @@ function insertHtml(parent, before, def, updaters){
 
     if (typeof def == 'string') {
         var n = document.createTextNode(def);
-        parent.insertBefore(n, before);
+        parent.insertBefore(n, before || null);
 
     } else if(def && def instanceof Function){
         var n = document.createTextNode('');
-        parent.insertBefore(n, before);
+        parent.insertBefore(n, before || null);
         // prepare text updater
         updaters.push(updateText(n,def));
 
     } else if(def instanceof Array){
-        def.forEach(function (c) { insertHtml(parent, null, c, updaters);} );
+        def.forEach(function (c) { insertHtml(parent, c, null, updaters);} );
 
     } else {
         var n = document.createElement(def.tag);
@@ -96,9 +96,9 @@ function insertHtml(parent, before, def, updaters){
                 }
             }
         }
-        parent.insertBefore(n, before);
+        parent.insertBefore(n, before || null);
         if (def.children && def.children.length) {
-            insertHtml(n, null, def.children, updaters);
+            insertHtml(n, def.children, null, updaters);
         }
     }
 }
