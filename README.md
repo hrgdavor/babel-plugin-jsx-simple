@@ -123,6 +123,9 @@ Create an empty folder with empty `package.json`
 npm install babel-plugin-syntax-jsx babel-plugin-jsx-simple babel-preset-env --save-dev
 ```
 
+> You can skip `babel-preset-env` in step above and remove `"presets": ["env"],` in step below if you are running your code
+in enviroment that [can execute ES6 code](https://kangax.github.io/compat-table/es6/).
+
 create `.babelrc`:
 
 ``` json
