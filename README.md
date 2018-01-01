@@ -16,6 +16,9 @@ simplifying it, and removing all but basic JSX transformation.
 Additionally, tools like `babel` enable a simple bridge for all cases where older ES is needed. 
 Babel easily will transpile the code for older browsers if you use preset `es2015`.
 
+Can be combined with [babel-plugin-jsx-inject](https://github.com/hrgdavor/babel-plugin-jsx-inject)
+and [babel-plugin-jsx-translate](https://github.com/hrgdavor/babel-plugin-jsx-translate)
+
 ### What is JSX all about(the basic idea)
 
 You want to write code that combines HTML and JS and do it sometimes inside a JS file too.
