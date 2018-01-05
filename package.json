@@ -14,7 +14,7 @@
     "exmaple": "cd example && babel example.js -o example.build.js --watch",
     "exmaple-arrow": "cd exmaple-arrow && babel example.js -o example.build.js --watch",
     "build": "babel index.js  -o dist/babel-plugin-jsx-simple.min.js",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
