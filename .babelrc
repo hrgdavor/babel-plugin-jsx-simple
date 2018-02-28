@@ -1,6 +1,6 @@
 {
   "retainLines": true,
-  "presets": ["es2015"],
+  "presets": ["env"],
   "plugins": ["./index"],
   "ignore": ["node_modules"]
 }
