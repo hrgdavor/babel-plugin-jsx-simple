@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-jsx-simple",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Babel plugin for simple JSX to JS transformation",
   "main": "index.js",
   "unpkg": "dist/babel-plugin-jsx-simple.min.js",
@@ -37,8 +37,7 @@
   },
   "homepage": "https://hrgdavor/babel-plugin-jsx-simple#readme",
   "dependencies": {},
-  "peerDependencies": {
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.4",
