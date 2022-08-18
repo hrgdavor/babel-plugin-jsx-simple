@@ -1,10 +1,9 @@
-module.exports = function jsx_mi2(babel) {
+module.exports = function(babel) {
   var t = babel.types
 
   const jsxHandler = {
     exit(path, state) {
       // turn tag into createElement call
-      console.log('path', path)
       var callExpr = buildElementCall(path.get('openingElement'), state)
       if (path.node.children.length) {
         // add children as 3rd+ arg
@@ -63,7 +62,6 @@ module.exports = function jsx_mi2(babel) {
       }
     }
     args.push(attribs)
-    console.log('args', args)
     return t.callExpression(t.identifier('h'), args)
   }
 

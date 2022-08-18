@@ -4,5 +4,8 @@
     "node": true
   },
   "root": true,
-  "extends": "eslint:recommended"
+  "extends": "eslint:recommended",
+  parserOptions: {
+    "ecmaVersion": 2020,
+  },  
 }
