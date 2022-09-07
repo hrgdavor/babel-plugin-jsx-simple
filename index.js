@@ -95,7 +95,7 @@ module.exports = function(babel) {
       var prop = attribs.shift()
       if (t.isJSXSpreadAttribute(prop)) {
         prop.argument._isSpread = true
-        _props.push(t.spreadProperty(prop.argument))
+        _props.push(t.spreadElement(prop.argument))
       } else {
         _props.push(convertAttribute(prop, state.opts.addArrow))
       }
